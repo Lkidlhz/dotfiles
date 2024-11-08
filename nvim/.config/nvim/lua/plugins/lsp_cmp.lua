@@ -66,4 +66,11 @@ return {
 		end,
     },
 
+    {
+        "simrat39/symbols-outline.nvim",
+        event = "VeryLazy",
+        config = function()
+            require("plugins.plugins_config.symbols_outline")
+        end
+    }
 }

@@ -1,15 +1,49 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 lspconfig.rust_analyzer.setup {
   -- Server-specific settings. See `:help lspconfig-setup`
   settings = {
     ['rust-analyzer'] = {},
   },
 }
-lspconfig.clangd.setup{}
+lspconfig.clangd.setup{
+	cmd = {
+		-- "~/.local/share/nvim/mason/bin/clangd",
+		"--query-driver=*arm-none-eabi*"
+	}
+}
 lspconfig.texlab.setup{}
+lspconfig.lua_ls.setup{}
+--local nvim_lsp = require('lspconfig')
+lspconfig.svlangserver.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+
+    if path == '~/Desktop/kid/FPGA/test' then
+      client.config.settings.systemverilog = {
+        includeIndexing     = {"**/*.{sv,svh,v}"},
+        excludeIndexing     = {"test/**/*.sv*"},
+        defines             = {},
+        launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+        formatCommand       = "/tools/verible-verilog-format"
+      }
+    elseif path == '/path/to/project2' then
+      client.config.settings.systemverilog = {
+        includeIndexing     = {"**/*.{sv,svh}"},
+        excludeIndexing     = {"sim/**/*.sv*"},
+        defines             = {},
+        launchConfiguration = "/tools/verilator -sv -Wall --lint-only",
+        formatCommand       = "/tools/verible-verilog-format"
+      }
+    end
+
+    client.notify("workspace/didChangeConfiguration")
+    return true
+  end
+}
+-- lspconfig.svls.setup{}
 
 
 -- Global mappings.
@@ -48,4 +82,44 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.buf.format { async = true }
     end, opts)
   end,
+})
+
+vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+})
+
+-- vim.diagnostic.open_float()
+-- vim.keymap.set('n', '<S-e>', vim.diagnostic.open_float)
+
+-- You will likely want to reduce updatetime which affects CursorHold
+-- note: this setting is global and should be set only once
+vim.o.updatetime = 250
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--   -- group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+--   -- callback = function ()
+--   --   vim.diagnostic.open_float(nil, {focus=false})
+--   -- end
+--   group = vim.api.nvim_create_augroup("float_diagnostic_cursor", { clear = true }),
+--   callback = function ()
+--     vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})
+--   end
+-- })
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  buffer = bufnr,
+  callback = function()
+    local opts = {
+      focusable = false,
+      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+      border = 'rounded',
+      source = 'always',
+      prefix = ' ',
+      scope = 'cursor',
+    }
+    vim.diagnostic.open_float(nil, opts)
+  end
 })

@@ -5,37 +5,39 @@ local keymap = vim.keymap
 
 local nore_opt = {noremap = true}
 
-keymap.set({'n', 'v'}, 'j', 'k')
-keymap.set({'n', 'v'}, 'k', 'j')
+-- keymap.set({'n'}, 'j', 'k')
+-- keymap.set({'n'}, 'k', 'j')
+-- keymap.set({'v'}, 'j', 'j')
+-- keymap.set({'v'}, 'k', 'k')
 
 -- 快速移动
 keymap.set({'n', 'v'}, "<s-h>", "h5")
-keymap.set({'n', 'v'}, "<s-j>", "k5")
-keymap.set({'n', 'v'}, "<s-k>", "j5")
+keymap.set({'n', 'v'}, "<s-k>", "k5")
+keymap.set({'n', 'v'}, "<s-j>", "j5")
 keymap.set({'n', 'v'}, "<s-l>", "l5")
 
 -- 自动换行移动提升
-keymap.set("n", "j", "v:count == 0 ? 'gk' : 'k'", {expr = true})
-keymap.set("n", "k", "v:count == 0 ? 'gj' : 'j'", {expr = true})
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {expr = true})
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {expr = true})
 
 -- 行移动
-keymap.set("n", "<C-k>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-keymap.set("n", "<C-j>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-keymap.set("i", "<C-k>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-keymap.set("i", "<C-j>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-keymap.set("v", "<C-k>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-keymap.set("v", "<C-j>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+keymap.set("n", "<C-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+keymap.set("n", "<C-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+keymap.set("i", "<C-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+keymap.set("i", "<C-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+keymap.set("v", "<C-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+keymap.set("v", "<C-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- 分屏
 keymap.set({'n'}, "sh", ":set nosplitright<CR>:vsplit<CR>")
-keymap.set({'n'}, "sj", ":set nosplitbelow<CR>:split<CR>")
-keymap.set({'n'}, "sk", ":set splitbelow<CR>:split<CR>")
+keymap.set({'n'}, "sk", ":set nosplitbelow<CR>:split<CR>")
+keymap.set({'n'}, "sj", ":set splitbelow<CR>:split<CR>")
 keymap.set({'n'}, "sl", ":set splitright<CR>:vsplit<CR>")
 
 -- 切屏
 keymap.set({'n'}, "<LEADER>h", "<C-w>h")
-keymap.set({'n'}, "<LEADER>j", "<C-w>k")
-keymap.set({'n'}, "<LEADER>k", "<C-w>j")
+keymap.set({'n'}, "<LEADER>j", "<C-w>j")
+keymap.set({'n'}, "<LEADER>k", "<C-w>k")
 keymap.set({'n'}, "<LEADER>l", "<C-w>l")
 
 -- 改变分屏大小

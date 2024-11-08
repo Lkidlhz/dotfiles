@@ -62,7 +62,7 @@ window:
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background and no title bar buttons
-  decorations: buttonless
+  decorations: full
 
   # Background opacity
   #
@@ -131,7 +131,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: "Hack Nerd Font Mono"
+    #family: "Hack Nerd Font Mono"
+    family: "Hack Nerd Font"
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -197,7 +198,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
   #primary:
   #  background: '#1d1f21'
@@ -313,6 +314,26 @@ font:
   #  magenta: '#c397d8'
   #  cyan:    '#70c0b1'
   #  white:   '#eaeaea'
+
+  normal:
+    black:   '#1d1f21'
+    red:     '#ff6d67'
+    green:   '#59f68d'
+    yellow:  '#f3f89d'
+    blue:    '#c9a8fa'
+    magenta: '#ff92d0'
+    cyan:    '#99ecfd'
+    white:   '#c5c8c6'
+
+  bright:
+    black:   '#666666'
+    red:     '#ff6d67'
+    green:   '#59f68d'
+    yellow:  '#f3f89d'
+    blue:    '#c9a8fa'
+    magenta: '#ff92d0'
+    cyan:    '#99ecfd'
+    white:   '#fffefe'
 
   # Dim colors
   #
@@ -451,7 +472,7 @@ font:
 #   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
 #   - (Windows) powershell
 shell:
-  program: /usr/local/bin/fish
+  program: /bin/zsh
   args:
     - --login
 #  program: /bin/bash

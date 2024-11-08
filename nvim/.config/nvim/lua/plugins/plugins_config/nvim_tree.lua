@@ -23,3 +23,7 @@ require("nvim-tree").setup({
 
 -- keymap
 vim.keymap.set('n', "<C-t>", ":NvimTreeToggle<CR>")
+
+-- web-icons
+require("nvim-web-devicons").refresh()
+require'nvim-web-devicons'.get_icons()

@@ -75,31 +75,31 @@ cmp.setup({
         format = function(entry, vim_item)
             local max_width = 0
             local kind_icons = {
-                Class = " ",
+                Class = " ",
                 Color = " ",
-                Constant = "ﲀ ",
+                Constant = " ",
                 Constructor = " ",
-                Enum = "練",
+                Enum = " ",
                 EnumMember = " ",
                 Event = " ",
                 Field = " ",
-                File = "",
-                Folder = " ",
-                Function = " ",
-                Interface = "ﰮ ",
+                File = " ",
+                Folder = "󰉋 ",
+                Function = "󰊕 ",
+                Interface = " ",
                 Keyword = " ",
                 Method = " ",
-                Module = " ",
-                Operator = "",
+                Module = "󰣩 ",
+                Operator = " ",
                 Property = " ",
-                Reference = " ",
+                Reference = " ",
                 Snippet = " ",
                 Struct = " ",
-                Text = " ",
-                TypeParameter = " ",
-                Unit = "塞",
-                Value = " ",
-                Variable = " ",
+                Text = "󰦨 ",
+                TypeParameter = " ",
+                Unit = "󰚯 ",
+                Value = "󰇼 ",
+                Variable = "󰫧 ",
             }
             local source_names = {
                 nvim_lsp = "(LSP)",
@@ -176,6 +176,15 @@ require('lspconfig')["pyright"].setup {
     capabilities = capabilities
 }
 require('lspconfig')["texlab"].setup {
+    capabilities = capabilities
+}
+require('lspconfig')["rust_analyzer"].setup {
+    capabilities = capabilities
+}
+-- require('lspconfig')["svls"].setup {
+--     capabilities = capabilities
+-- }
+require('lspconfig')["svlangserver"].setup {
     capabilities = capabilities
 }
 -- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {

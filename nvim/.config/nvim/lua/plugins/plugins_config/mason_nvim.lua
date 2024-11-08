@@ -14,6 +14,9 @@ require("mason-lspconfig").setup({
         "clangd",
         "pyright",
         "texlab",
+        "rust_analyzer",
+        "svlangserver",
+        -- "svls",
     }
 })
 

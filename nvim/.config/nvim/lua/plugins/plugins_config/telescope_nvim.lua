@@ -1,3 +1,4 @@
+-- https://github.com/nvim-telescope/telescope.nvim#getting-started
 require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:

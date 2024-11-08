@@ -38,7 +38,7 @@ opt.scrolloff = 8
 opt.sidescrolloff = 8
 
 -- 显示空白字符
-opt.list = true
+opt.list = false
 
 -- spell check
 opt.spell = false
@@ -64,3 +64,5 @@ vim.api.nvim_exec([[
 -- encoding
 opt.encoding = "utf-8"
 
+-- load config file in projrct as ex command
+opt.exrc = true
